@@ -1,0 +1,29 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Template
+  chapters:
+  - file: template/markdown
+  - file: template/notebooks
+  - file: template/markdown-notebooks
+
+- caption: Linear Algebra
+  chapters:
+  - file: linalg/intro
+  - file: linalg/cauchy-schwarz
+  - file: linalg/rank-null
+  - file: linalg/eigenval-eigenvec
+  
+- caption: Multivariable Calculus
+  chapters:
+  - file: multivar/intro
+  - file: multivar/differentiation
+
+- caption: Asymptotic Methods
+  chapters:
+  - file: asymp/laplace-method
+  - file: asymp/stationary-phase
+  - file: asymp/steepest-desc
