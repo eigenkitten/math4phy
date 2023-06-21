@@ -6,6 +6,9 @@ This is an initiative to try to make learning maths more accessible to CUHK Phys
 2. Run `./build-all.sh`
 3. A symbolic link `./_build` will be created, the webpage in under `./_build/html`
 
+## How to modify the code
+Please refer to https://jupyterbook.org/en/stable/start/your-first-book.html for a beginner tutorial on jupyter books
+
 ## Collaboration Workflow
 We will try to follow the following sources to conduct the collaboration
 1. https://docs.github.com/en/pull-requests/collaborating-with-pull-requests
