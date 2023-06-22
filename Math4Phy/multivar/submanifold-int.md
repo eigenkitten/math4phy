@@ -58,6 +58,40 @@ $$
 where $\theta$ is the angle between the two vectors. This is precisely the norm of the cross product $|\mathbf{v}_1 \times \mathbf{v}_2|$.
 ````
 
+## Differential volume element
+Consider a $k$-dimensional surface in $\mathbb{R}^n$ parameterized by a function $X:U\subset \mathbb{R}^{k} \to \mathbb{R}^n$:
+
+$$
+X\left(\theta_1, \theta_2, \cdots, \theta_k \right)
+$$
+
+Clearly, the coordinate basis for the tangent space are:
+
+$$
+\frac{\partial X}{\partial \theta_1}, \frac{\partial X}{\partial \theta_2}, \cdots, \frac{\partial X}{\partial \theta_k}
+$$
+
+Therefore, the differential volume element is the volume spanned by these coordinate basis:
+
+$$
+d^k\mathbf{X} = \sqrt{\det \left[T^\dagger T\right]} \,d^k \boldsymbol{\theta}
+$$
+
+where $d^k \mathbf{\theta} = d\theta_1 d\theta_2 \cdots d\theta_k$ and 
+
+$$
+T = \left[\frac{\partial X}{\partial \theta_1}, \frac{\partial X}{\partial \theta_2}, \cdots, \frac{\partial X}{\partial \theta_k}\right]
+$$
+
+```{note}
+In fact in $\mathbb{R}^2$, $T^\dagger T$ is also called the **first fundamental form** of the surface.
+```
+
+With the differential volume element, we can perform integration on submanifolds of $\mathbb{R}^n$. Here are some examples
+
+
+
+````{admonition} **Example: Surface area of 4-sphere** 
 :class: tip
 The 4-sphere is defined by the following implicit equation:
 
@@ -78,7 +112,21 @@ where $\alpha, \theta \in [0,\pi]$ and $\phi \in [0,\pi]$
 
 
 Hence, the differential volume element is given as:
+
+$$
+dS = R^3 \sin^2 \alpha \sin \theta d\alpha d\theta d\psi
+$$
+
+and the surface area:
+
+$$
+S = \int_0^{\pi} d\alpha \int_{0}^{\pi} d\theta \int_0^{2\pi} d\phi \,\,R^3 \sin^2 \alpha \sin \theta = 2 \pi^2 R^3
+$$
+
+
+
 ````
+
 
 
 
