@@ -21,7 +21,6 @@ parts:
   chapters:
   - file: multivar/intro
   - file: multivar/differentiation
-  - file: multivar/submanifold-int
 
 - caption: Asymptotic Methods
   chapters:
