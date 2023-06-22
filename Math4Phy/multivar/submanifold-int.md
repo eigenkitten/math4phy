@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Integration over submanifold of $\mathbb{R}^n$
 
 ## Volume of $k$-parallelepiped in $\mathbb{R}^n$
@@ -122,10 +133,82 @@ and the surface area:
 $$
 S = \int_0^{\pi} d\alpha \int_{0}^{\pi} d\theta \int_0^{2\pi} d\phi \,\,R^3 \sin^2 \alpha \sin \theta = 2 \pi^2 R^3
 $$
+````
 
 
+````{admonition} **Example: Arc length of an ellipse** 
+:class: tip
+The ellipse is defined using the parametric equation $\vec \gamma: t\in [0,2\pi] \to \mathbb{R}^2$:
+
+$$
+\vec \gamma(t) = \left(a \cos t, a \sin t\right) 
+$$
+
+By {eq}`parallelepiped_volume_k`, the arc length $s$ is given by the following integral:
+
+$$
+s = \int_0^{2\pi} |\vec \gamma^{'}(t)| \,dt = \int_{0}^{2\pi} \sqrt{a^2 \sin^2 t + b^2 \cos^2 t} \,dt
+$$
+
+By restricting the domain to $[0,\pi/2]$ and applying the double angle formula, we obtain:
+
+$$
+s = 4 \sqrt{\frac{a^2+b^2}{2}} \int_{0}^{\pi/2} \sqrt{1-\kappa \cos 2t} \, dt
+$$
+
+where $\kappa=\frac{a^2-b^2}{a^2+b^2} \leq 1$. We can proceed by writing our integral in terms of special functions or make an approximation by Taylor expansion, we will choose the latter.
+
+$$
+s &= 2 \sqrt{\frac{a^2+b^2}{2}} \int_{0}^{\pi} \sqrt{1-\kappa \cos t} \, dt\\
+&\approx 2\pi \sqrt{\frac{a^2+b^2}{2}} \left[1-\left(\frac{\kappa}{4}\right)^2\right]
+$$
+
+
+Here is a plot comparing the approximated result with the analytical calculation:
+
+```{glue} arc_length_integral
+```
 
 ````
+
+```{code-cell} ipython3
+:tags: [remove-stderr,remove-cell]
+from myst_nb import glue
+import numpy as np
+import matplotlib.pyplot as plt
+
+kappa = np.linspace(0,1,1000)
+
+def integral(kappa):
+    tb = np.linspace(0,np.pi,5001)
+    tm = 0.5*(tb[1:]+tb[:-1])
+    dt = tb[1:]-tb[:-1] 
+    return np.sum(np.sqrt(1-kappa*np.cos(tm))*dt)
+
+integral = np.vectorize(integral)
+
+analy = integral(kappa)
+appro = np.pi*(1-(kappa/4)**2)
+
+fig, axs = plt.subplots(nrows=2,sharex=True,gridspec_kw = {'wspace':0, 'hspace':0},dpi=100)
+axs[0].plot(kappa,analy,label='Analytical')
+axs[0].plot(kappa,appro,label='Approximate')
+axs[0].legend()
+axs[0].set_ylabel(r'$I(\kappa)$')
+axs[0].set_title(r'Approximating $I(\kappa) = \int_{0}^{\pi} \sqrt{1-\kappa \cos t} \, dt$')
+axs[0].grid()
+
+axs[1].plot(kappa,appro/analy)
+axs[1].set_ylabel(r'Error')
+axs[1].set_xlabel(r'$\kappa$')
+axs[1].axhline(1,ls='--',color='grey',alpha=0.8)
+axs[1].set_ylim(0.99,1.05)
+axs[1].grid()
+
+glue("arc_length_integral",fig)
+```
+
+
 
 
 
