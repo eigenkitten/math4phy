@@ -141,7 +141,7 @@ $$
 The ellipse is defined using the parametric equation $\vec \gamma: t\in [0,2\pi] \to \mathbb{R}^2$:
 
 $$
-\vec \gamma(t) = \left(a \cos t, a \sin t\right) 
+\vec \gamma(t) = \left(a \cos t, b \sin t\right) 
 $$
 
 By {eq}`parallelepiped_volume_k`, the arc length $s$ is given by the following integral:
