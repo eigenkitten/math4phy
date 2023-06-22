@@ -136,6 +136,103 @@ $$
 ````
 
 
+````{admonition} **Example: Surface area of a n-sphere** 
+:class: tip
+A n-sphere is a surface defined by the following implicit equation:
+
+$$
+x_1^2 + x_2^2 + \cdots + x_n^2 = R^2
+$$
+
+To simply the notation, we first rescale all variables by $R$ (i.e. Let $x_i = R u_i$). This cast our defining equation into the following form:
+$$
+u_1^2 + u_2^2 + \cdots + u_n^2 = 1
+$$
+
+We want to proceed by mathematical induction. To do that, we observe that for any fixed $u_n$, the equation above defines a $n-1$ dimensional sphere of radius $1 - u_n^2$, Hence, the spherical coordinates in $n-1$ dimension can be used. Therefore, we can recursively define a parameterization for a $n$-sphere:
+
+$$
+u_1 & = \sin \alpha_{n-1} S^{n-1}_1\left(\alpha_{1}, \alpha_2, \cdots, \alpha_{n-2}\right)\\
+&\cdots\\
+u_{n-1} & = \sin \alpha_{n-1} S^{n-1}_{n-1}\left(\alpha_{1}, \alpha_2, \cdots, \alpha_{n-2}\right)\\
+u_n &= \cos \alpha_{n-1}
+$$
+
+where $S^{n}_{i}$ is the spherical coordinate element for an unit $n$-sphere. We will also introduce the notation $\mathbf{S}_n$, which is defined to be:
+
+$$\mathbf{S}_{n} = \left(S^{n}_1, S^{n}_2, \cdots, S^{n-1}_{n}\right)$$
+
+Because $\mathbf{S}_n$ is a vector on the unit $n$-sphere, $\mathbf{S}_n^\dagger \mathbf{S}_n = 1$.
+
+Now, $T_n$ be the jacobian for an unit $n$-sphere under the spherical coordinates, by definition:
+
+$$
+T_n &= \begin{bmatrix}
+\frac{\partial u_1}{\partial{\alpha_{n-1}}} & \frac{\partial u_1}{\partial{\alpha_{n-2}}} & \cdots & \frac{\partial u_1}{\partial{\alpha_{1}}}\\
+\frac{\partial u_2}{\partial{\alpha_{n-1}}} & \frac{\partial u_2}{\partial{\alpha_{n-2}}} & \cdots & \frac{\partial u_2}{\partial{\alpha_{1}}}\\
+\cdots & \cdots & \cdots & \cdots\\
+\frac{\partial u_n}{\partial{\alpha_{n-1}}} & \frac{\partial u_n}{\partial{\alpha_{n-2}}} & \cdots & \frac{\partial u_n}{\partial{\alpha_{1}}}\\
+\end{bmatrix}\\
+&= \begin{bmatrix}
+\frac{\partial u_1}{\partial{\alpha_{n-1}}} & \frac{\partial u_1}{\partial{\alpha_{n-2}}} & \cdots & \frac{\partial u_1}{\partial{\alpha_{1}}}\\
+\frac{\partial u_2}{\partial{\alpha_{n-1}}} & \frac{\partial u_2}{\partial{\alpha_{n-2}}} & \cdots & \frac{\partial u_2}{\partial{\alpha_{1}}}\\
+\cdots & \cdots & \cdots & \cdots\\
+\frac{\partial u_n}{\partial{\alpha_{n-1}}} & 0 & \cdots & 0 \\
+\end{bmatrix}\\
+&= \begin{bmatrix}
+\cos \alpha_{n-1} \mathbf{S}_{n-1} & \sin \alpha_{n-1} T_{n-1} \\
+-\sin \alpha_{n-1} & \mathbf{0}
+\end{bmatrix}
+$$
+
+By direct computation, the product $T_n^\dagger T_n$ is:
+
+
+$$
+T_n^\dagger T_n = \begin{bmatrix}
+1 & \cos\alpha_{n-1} \sin \alpha_{n-1} \mathbf{S}_{n-1}^\dagger T_{n-1}\\
+\cos\alpha_{n-1} \sin \alpha_{n-1} T_{n-1}^\dagger \mathbf{S}_{n-1} & \sin^2 \alpha_{n-1} T_{n-1}^\dagger T_{n-1}
+\end{bmatrix}
+$$
+
+Using the formula for the determinant of block matricies:
+
+$$
+\det \begin{bmatrix}
+A & B \\
+C & D
+\end{bmatrix} = \det\left(A-BD^{-1}C\right)\det\left(D\right)
+$$
+
+we can show that
+
+$$
+\det T_n^\dagger T_n &= \det \left(\sin^2 \left(\alpha_{n-1}\right) T_{n-1}^\dagger T_{n-1}\right) \det\left(T_{n-1}^\dagger T_{n-1}\right)\\
+&= \sin^{2(n-2)}\left(\alpha_{n-1}\right) \det\left(T_{n-1}^\dagger T_{n-1}\right)
+$$
+
+Therefore, 
+
+$$
+\sqrt{\det T_n^\dagger T_n} = \left|\sin^{n-2} \left(\alpha_{n-1}\right)\right| \sqrt{\det\left(T_{n-1}^\dagger T_{n-1}\right)}
+$$
+
+and we have shown that the surface area element of a unit $n$-sphere takes the form:
+
+$$
+dS_n = \sin^{n-2}\left(\alpha_{n-1}\right)\sin^{n-3}\left(\alpha_{n-2}\right) \cdots \sin\left(\alpha_{2}\right) d\alpha_1 d\alpha_2 \cdots d\alpha_{n-1}
+$$
+
+This can be directly integrated to give the following surface area for a unit $n$-sphere:
+
+$$
+S_n = \frac{2\pi^{n/2}}{\Gamma(n/2)}
+$$
+
+For a $n$-sphere with radius $R$, we simply multiply $R^{n-1}$ to $S_n$
+````
+
+
 ````{admonition} **Example: Arc length of an ellipse** 
 :class: tip
 The ellipse is defined using the parametric equation $\vec \gamma: t\in [0,2\pi] \to \mathbb{R}^2$:
