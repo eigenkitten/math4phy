@@ -10,7 +10,16 @@ This is an initiative to try to make learning maths more accessible to CUHK Phys
 Please refer to https://jupyterbook.org/en/stable/start/your-first-book.html for a beginner tutorial on jupyter books
 
 ## Collaboration Workflow
+
+### Reading materials
 We will try to follow the following sources to conduct the collaboration
 1. https://docs.github.com/en/pull-requests/collaborating-with-pull-requests
 2. https://www.earthdatascience.org/courses/intro-to-earth-data-science/git-github/github-collaboration/github-for-collaboration-open-science-workflow/
 3. https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67
+
+### Rules
+1. Never push to `main` directly (P.S. I should make it protected later).
+2. Push development changes on `dev`.
+3. If you wish to write about a new topic, open a new branch, do the development there, and merge it back to `dev` via pull request.
+4. Please make sure everything that gets merged into `dev` is at least compilable.
+
